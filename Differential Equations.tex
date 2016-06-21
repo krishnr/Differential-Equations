@@ -1,0 +1,351 @@
+   
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+
+\begin{document}
+
+% Title
+\title{Solving Differential Equations}
+\author{Krishn Ramesh}
+\maketitle
+
+
+
+% Section 1
+\section{Power Series Solution of $y''+p(t)y'+q(t)y=0$}
+
+This is a generalized ODE where $y=y(t)$. The solution is a power series function.
+
+\subsubsection*{Ordinary Points}
+A function $f(t)$ is called analytic at $t_0$ if it has a Taylor Series expansion i.e. all its derivatives from 1 to $\infty$ exist. For our DE $y''+p(t)y' +q(t) = 0$, $t_0$ is an ordinary point if both $p(t)$ and $q(t)$ are analytic. If this is the case, the solution below solves the DE.
+
+\subsubsection*{Ordinary Point Solution}
+\begin{enumerate}
+
+\item Use the \textbf{trial function}:
+$$
+y(t)= \sum \limits_{n=0}^{\infty} a_n(t-t_0)^n
+$$
+
+$t_0$ is an arbitrary center point. If not given, it is assumed to be 0. Our goal is to find $a_n$.
+
+\item The \textbf{index shifted} derivatives of $y(t)$ are:
+
+\begin{gather*}
+y'(t)= \sum \limits_{n=1}^{\infty} a_n n (t-t_0)^{n-1} = \sum \limits_{n=0}^{\infty} a_{n+1} (n+1) (t-t_0)^n \\
+y''(t)= \sum \limits_{n=2}^{\infty} a_n n (n-1)(t-t_0)^{n-2} = \sum \limits_{n=2}^{\infty} a_{n+2} (n+1) (n+2) (t-t_0)^n
+\end{gather*}
+
+\item Substitute back into the DE.
+\item Collect the $(t-t_0)^n$ terms to obtain a \textbf{recurrence relation}. It should look like:
+
+$$
+a_{n+2} = (...)a_n
+$$
+
+\item If possible, generalize the recurrence relation into even and odd cases. Write out $a_0$ through $a_3$ and simplify to look for patterns. The generalized even case will be $a_{2n}$ and the odd case will be $a_{2n+1}$.
+
+\item The final solution is:
+
+$$
+y(t) = \sum \limits_{n=0}^{\infty} a_{2n} (t-t_0)^{2n} + \sum \limits_{n=0}^{\infty} a_{2n+1} (t-t_0)^{2n+1}
+$$
+
+\end{enumerate}
+
+\subsubsection*{Singular Points}
+If $t_0$ is not ordinary, it is singular.
+ \paragraph{Regular Singular Point} if $(t-t_0)p(t)$ and $(t-t_0)^2 q(t)$ are both analytic. Alternatively, you can check if $\displaystyle{ \lim_{t\to t_0} (t-t_0)p(t) }$ and $\displaystyle{ \lim_{t\to t_0} (t-t_0)^2 q(t) }$ exist.
+ \paragraph{Irregular Singular Point} otherwise.
+
+\subsubsection*{Regular Singular Point Solution aka Method of Frobenius}
+Pretty much the same as the Ordinary Point Solution except you use a slightly different trial function.
+
+\begin{enumerate}
+
+\item Use the trial function:
+$$y(t)= \sum \limits_{n=0}^{\infty} a_n(t-t_0)^{n+\lambda}$$
+
+The goal is to find $\lambda$ and $a_n$.
+
+\item The derivatives of $y(t)$ are:
+
+\begin{gather*}
+y'(t)= \sum \limits_{n=1}^{\infty} a_n (n+\lambda) (t-t_0)^{n+\lambda-1} \\
+y''(t)= \sum \limits_{n=2}^{\infty} a_n (n+\lambda) (n+\lambda-1)(t-t_0)^{n+\lambda-2}
+\end{gather*}
+
+\item Index shift the derivatives so that the exponents are the same.
+\item You will find some of your series start at $n=-1$ while others start at $n=0$. Unroll the $n=-1$ term so that all the series start at 0 and you can combine them.
+\item Extract a quadratic equation for $\lambda$. This comes from the unrolling of the $n=-1$ term from the previous step.
+\item Solve for $\lambda_1$ and $\lambda_2$.
+\item For each $\lambda$, find the recurrence relation.
+\item Write out $a_1$, $a_2$, $a_3$ for each lambda.
+\item The linearly independent solution for each $\lambda$ is:
+
+$$y_{1,2}(t) = (t-t_0)^{\lambda_{1,2}}[a_0 + a_1t + a_2t^2 + ... ] $$
+
+\item The general solution is $y(t) = c_1y_1(t) + c_2y_2(t)$
+
+\end{enumerate}
+
+\paragraph{Note} If $\lambda_1 - \lambda_2$ is an integer, you will only get 1 linearly independent solution. The other one is found using the Extended Method of Frobenius.
+
+
+% Section 2
+\section{Cauchy-Euler Equation $t^2y''+aty'+by=0$}
+This is a special case of the DE in section 1.
+
+\subsubsection*{Solution}
+\begin{enumerate}
+
+\item Use the trial function:
+$$ y(t) = |t|^{\lambda} $$
+
+\item Find its derivatives:
+\begin{gather*}
+y'(t)= \lambda t^{\lambda -1} \\
+y''(t)= \lambda (\lambda-1) t^{\lambda-2}
+\end{gather*}
+
+\item Substitute into the DE.
+\item Collect terms by exponent.
+\item Extract quadratic equation for $\lambda$ (indicial equation) and solve for $\lambda_1$ and $\lambda_2$.
+\item Only 2 cases we care about:
+\paragraph{Distinct real roots} $y_1(t) = t^{\lambda_1}$ and $y_2(t) = t^{\lambda_2}$
+\paragraph{Repeated real roots} $y_1(t) = t^{\lambda_1}$ and $y_2(t) = t^{\lambda_2}\ln(t)$
+
+\item The general solution in both cases is $y(t) = c_1y_1(t)+c_2y_2(t)$
+\end{enumerate}
+
+
+
+% Section 3
+\section{Bessel's DE $t^2y''+ty'+(t^2-\nu^2)y=0$}
+This DE is usually arrived at from other DEs through change of variables, which is most of the work. Actually solving the DE is just a matter of stating the general solution.
+
+\subsubsection*{Solution}
+You only get one linearly independent solution:
+$$ y(t) = c_1J_0(t) + c_2Y_0(t) $$
+
+$J_0(t)$ is called the Bessel's function of the 1st kind of order $\nu=0$.
+$Y_0(t)$ is called the Bessel's function of the 2nd kind of order 0. 
+
+
+% Section 4
+\section{Heat Equation $u_t=\kappa u_{xx}$}
+
+\subsection{Homogenous Boundary Conditions}
+This means that all the BCs equal 0. There are two types of BCs.
+
+\paragraph{Frozen ends} $u(0,t) = u(l,t) = 0$
+\paragraph{Insulated ends} $u_x(0,t) = u_x(l,t) = 0$
+
+\subsubsection*{Solution}
+
+\begin{enumerate}
+
+\item Separation of Variables: assume the solution $u(x,t) = X(x)T(t)$
+\item Substitute into the PDE to obtain:
+
+$$ \frac{T'(t)}{\kappa T(t)} = \frac{X''(x)}{X(x)} = \sigma $$
+
+\item The solution $T(t)$ is:
+$$ T(t) = Ce^{\kappa \sigma t}$$
+
+\item Assuming $\sigma < 0$, the solution $X(x)$ is:
+$$ X(x) = A\cos(-\sqrt{\sigma}x) + B\sin(-\sqrt{\sigma}x) $$
+
+\item Plug the BCs into $X(x)$ to find $\sigma$:
+$$ \sigma = -(\frac{n\pi}{l})^2 $$
+\item Substitute $X_n(x)$ and $T_n(t)$ back into $u(x,t)$ to obtain:
+
+$$ u(x,t) = \sum \limits_{n=0}^{\infty} u_n(x,t) = \sum \limits_{n=0}^{\infty} B_n \sin(\frac{n\pi}{l}x)e^{-(\frac{n\pi}{l})^2\kappa t}$$
+For frozen ends, you end up with just $\sin$. For insulated ends, you end up with just $\cos$.
+
+\item To find $B_n$, sub in the IC $u(x,0)=f(x)$ to find that it resembles the Fourier series, and so:
+$$ B_n = \frac{1}{l} \int_{-l}^{l} f(x) \sin(\frac{n\pi}{l}x) dx$$
+
+\item If the integral is straightforward, solve it, otherwise get it into one of the following forms through trig identities:
+
+\begin{align*}
+	\frac{1}{l} \int_{-l}^{l} cos(\frac{n\pi}{l}x)cos(\frac{m\pi}{l}x) &= 
+		\begin{cases}
+			1, & n=m \\
+			0, & n\neq m
+		\end{cases}\\
+\frac{1}{l} \int_{-l}^{l} cos(\frac{n\pi}{l}x)sin(\frac{m\pi}{l}x) &= 0 \\
+\frac{1}{l} \int_{-l}^{l} sin(\frac{n\pi}{l}x)sin(\frac{m\pi}{l}x) &= 
+		\begin{cases}
+			1, & n=m \\
+			0, & n\neq m
+		\end{cases}\\
+\end{align*}
+
+\item Plug in $B_n$ back into $u(x,t)$ to complete the solution.
+
+\end{enumerate}
+
+\subsection{Non-Homogenous Boundary Conditions}
+
+Separation of variables cannot be used because not all the BCs are 0. The plan is to change variables until all the BCs are 0 and then the solution is the same as the homogenous case.
+
+\subsubsection*{Solution}
+
+\begin{enumerate}
+
+\item Find the steady-state temperature, i.e. the temperature as $t \to \infty$:
+
+\begin{align*}
+&\implies u_t = 0 \\
+&\implies u_{xx} = 0 \text{  (from PDE)} \\
+&\implies u''_{ss}(x) = 0 \\
+&\implies u'_{ss}(x) = a \\
+&\implies u_{ss}(x) = ax+b
+\end{align*}
+
+\item Sub in the BCs to find $u_{ss}$.
+
+\item Define $w(x,t)$ to be the transient temperature and:
+$$ u(x,t) = w(x,t) + u_{ss}(x) $$
+
+\item Rewrite the I/BVP in terms of $w$. The PDE remains unchanged but the BCs should now be 0.
+\item Solve the new I/BVP for $w(x,t)$ using the same method as the previous section on homogenous BCs.
+\item Write the final solution in terms of $u(x,t)$.
+
+\end{enumerate}
+
+\subsection{Non-Homogenous Heat Problem $u_t = \kappa u_{xx} + g(x,t)$}
+
+\subsubsection*{Solution}
+
+\begin{enumerate}
+
+\item Assume g can be expressed as a Fourier sine series (if frozen ends) or cosine series (if insulated ends).
+
+\begin{align*}
+g(x,t) = \sum \limits_{n=0}^{\infty} g_n(t) \cos(\frac{n\pi}{l}x) \\
+g_n(t) = \frac{1}{l} \int_{-l}^{l} g(x,t) \cos(\frac{n\pi}{l}x) dx
+\end{align*}
+
+\item The solution is of the form:
+
+$$ u(x,t) = \sum \limits_{n=0}^{\infty} T_n(t) \cos(\frac{n\pi}{l}x) $$
+
+The goal is to find $T_n(t)$.
+
+\item Plug in the $u(x,0)$ BC to find $T_n(0)$, which serves as initial conditions.
+
+\item Sub everything into the PDE to end up with:
+
+$$ T_n'(t) + \kappa (\frac{n\pi}{l})^2 T_n(t) = g_n(t) $$
+
+\item Solve the n DEs from the previous equation to solve the problem.
+
+\end{enumerate}
+
+
+% Section 5
+\section{Wave Problem $u_{tt}=c^2u_{xx}$}
+Here, $0<x<l, t>0$. 
+\paragraph{BCs} $u(0,t) = u(l,t) = 0$
+\paragraph{ICs} $u(x,0) = f(x)$ and $u_t(x,0) = g(x)$
+
+\subsubsection*{Solution}
+
+\begin{enumerate}
+
+\item Separation of Variables: assume the solution $u(x,t) = X(x)T(t)$
+\item Substitute into the PDE to obtain:
+
+$$ \frac{T''(t)}{c^2T(t)} = \frac{X''(x)}{X(x)} = \sigma $$
+
+\item The solution $X(x)$ is:
+$$ X(x) = c_1\cos(-\sqrt{\sigma}x) + c_2\sin(-\sqrt{\sigma}x) $$
+
+\item Plug the BCs into $X(x)$ to find $\sigma$:
+$$ \sigma = -(\frac{n\pi}{l})^2 $$
+
+\item The solution $T(t)$ is:
+$$ T_n(t) = a_n\cos(\frac{n\pi}{l}ct) + b_n\sin(\frac{n\pi}{l}ct) $$
+
+\item Substitute $X_n(x)$ and $T_n(t)$ back into $u(x,t)$ to obtain:
+
+$$ u(x,t) = \sum \limits_{n=0}^{\infty} \left( a_n\cos(\frac{n\pi}{l}ct) + b_n\sin(\frac{n\pi}{l}ct) \right) \sin(\frac{n\pi}{l}x)$$
+
+\item Plug in the ICs to get $a_n, b_n$.
+
+\begin{gather*}
+a_n = \frac{1}{l} \int_{-l}^{l} f(x) \sin(\frac{n\pi}{l}x) dx \\
+b_n = \frac{2}{n\pi c} \int_{-l}^{l} g(x) \sin(\frac{n\pi}{l}x) dx
+\end{gather*}
+
+\end{enumerate}
+
+
+
+% Section 6
+\section{Traveling Wave $u_{tt}=c^2u_{xx}$}
+The difference between the Wave Problem and the Traveling Wave is that here, $-\infty<x<\infty$. There are no boundary conditions.
+\paragraph{ICs} $u(x,0) = f(x)$ and $u_t(x,0) = g(x)$
+
+\subsubsection*{Solution}
+$$u(x,t) = \frac{1}{2} [ f(x-ct) + f(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} g(s) ds $$
+
+% Section 7
+\section{Dirichlet Problem $u_{xx}+u_{yy}+y_{zz}=0$}
+ 
+\subsection{All corners 0}
+\subsubsection*{Solution}
+\begin{enumerate}
+
+\item Separation of Variables: assume the solution $u(x,t) = X(x)Y(y)$
+\item Substitute into the PDE to obtain:
+
+$$ -\frac{X''(t)}{X(x)} = \frac{Y''(y)}{Y(y)} = \sigma $$
+
+\item The solution $X(x)$ is:
+$$ X(x) = a\cos(\sqrt{\sigma}x) + b\sin(\sqrt{\sigma}x) $$
+
+\item Plug in the corners into $X(x)$ to find $\sigma$:
+$$ \sigma = (\frac{n\pi}{l})^2 $$
+
+\item The solution $Y(y)$ is:
+$$ Y_n(y) = c_1\cosh(\frac{n\pi}{l}y) + c_2\sinh(\frac{n\pi}{l}y) $$
+
+\item Plug in the corners to find the constants.
+
+\item Substitute $X_n(x)$ and $Y_n(y)$ back into $u(x,y)$ to obtain:
+
+$$ u(x,t) = \sum \limits_{n=0}^{\infty} b_n\sin(\frac{n\pi}{l}x) \sinh(\frac{n\pi}{l}y) $$
+
+\item Plug in the BCs to get $b_n$.
+\end{enumerate}
+
+\subsection{Corners non-zero}
+\subsubsection*{Solution}
+\begin{enumerate}
+
+\item Make the corners 0 by using the change of variables:
+
+$$ U(x,y) = u(x,y) - \nu(x,y) $$
+
+where
+
+$$ \nu(x,y) = \alpha_1 +\alpha_2x + \alpha_3y + \alpha_4xy $$
+
+\item Setting $u=\nu$ at the corners results in a 4x4 system. 
+
+\item Once $\nu$ is known, write the new problem in terms of $U(x,y)$ and solve using the same method as above.
+
+\end{enumerate}
+ 
+\end{document}
