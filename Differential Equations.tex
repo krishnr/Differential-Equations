@@ -285,7 +285,7 @@ $$ u(x,t) = \sum \limits_{n=0}^{\infty} \left( a_n\cos(\frac{n\pi}{l}ct) + b_n\s
 
 \begin{gather*}
 a_n = \frac{1}{l} \int_{-l}^{l} f(x) \sin(\frac{n\pi}{l}x) dx \\
-b_n = \frac{2}{n\pi c} \int_{-l}^{l} g(x) \sin(\frac{n\pi}{l}x) dx
+b_n = \frac{1}{n\pi c} \int_{-l}^{l} g(x) \sin(\frac{n\pi}{l}x) dx
 \end{gather*}
 
 \end{enumerate}
@@ -312,7 +312,7 @@ $$u(x,t) = \frac{1}{2} [ f(x-ct) + f(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} g(
 
 $$ -\frac{X''(t)}{X(x)} = \frac{Y''(y)}{Y(y)} = \sigma $$
 
-\item The solution $X(x)$ is:
+\item Assuming $\sigma > 0$,  the solution $X(x)$ is:
 $$ X(x) = a\cos(\sqrt{\sigma}x) + b\sin(\sqrt{\sigma}x) $$
 
 \item Plug in the corners into $X(x)$ to find $\sigma$:
