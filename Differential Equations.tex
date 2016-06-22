@@ -1,4 +1,4 @@
-   
+
 \documentclass[11pt]{article}
 \renewcommand{\baselinestretch}{1.05}
 \usepackage{amsmath}
@@ -137,7 +137,7 @@ You only get one linearly independent solution:
 $$ y(t) = c_1J_0(t) + c_2Y_0(t) $$
 
 $J_0(t)$ is called the Bessel's function of the 1st kind of order $\nu=0$.
-$Y_0(t)$ is called the Bessel's function of the 2nd kind of order 0. 
+$Y_0(t)$ is called the Bessel's function of the 2nd kind of order 0.
 
 
 % Section 4
@@ -177,13 +177,13 @@ $$ B_n = \frac{1}{l} \int_{-l}^{l} f(x) \sin(\frac{n\pi}{l}x) dx$$
 \item If the integral is straightforward, solve it, otherwise get it into one of the following forms through trig identities:
 
 \begin{align*}
-	\frac{1}{l} \int_{-l}^{l} cos(\frac{n\pi}{l}x)cos(\frac{m\pi}{l}x) &= 
+	\frac{1}{l} \int_{-l}^{l} cos(\frac{n\pi}{l}x)cos(\frac{m\pi}{l}x) &=
 		\begin{cases}
 			1, & n=m \\
 			0, & n\neq m
 		\end{cases}\\
 \frac{1}{l} \int_{-l}^{l} cos(\frac{n\pi}{l}x)sin(\frac{m\pi}{l}x) &= 0 \\
-\frac{1}{l} \int_{-l}^{l} sin(\frac{n\pi}{l}x)sin(\frac{m\pi}{l}x) &= 
+\frac{1}{l} \int_{-l}^{l} sin(\frac{n\pi}{l}x)sin(\frac{m\pi}{l}x) &=
 		\begin{cases}
 			1, & n=m \\
 			0, & n\neq m
@@ -255,7 +255,7 @@ $$ T_n'(t) + \kappa (\frac{n\pi}{l})^2 T_n(t) = g_n(t) $$
 
 % Section 5
 \section{Wave Problem $u_{tt}=c^2u_{xx}$}
-Here, $0<x<l, t>0$. 
+Here, $0<x<l, t>0$.
 \paragraph{BCs} $u(0,t) = u(l,t) = 0$
 \paragraph{ICs} $u(x,0) = f(x)$ and $u_t(x,0) = g(x)$
 
@@ -302,15 +302,15 @@ $$u(x,t) = \frac{1}{2} [ f(x-ct) + f(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} g(
 
 % Section 7
 \section{Dirichlet Problem $u_{xx}+u_{yy}+y_{zz}=0$}
- 
+
 \subsection{All corners 0}
 \subsubsection*{Solution}
 \begin{enumerate}
 
-\item Separation of Variables: assume the solution $u(x,t) = X(x)Y(y)$
+\item Separation of Variables: assume the solution $u(x,y) = X(x)Y(y)$
 \item Substitute into the PDE to obtain:
 
-$$ -\frac{X''(t)}{X(x)} = \frac{Y''(y)}{Y(y)} = \sigma $$
+$$ -\frac{X''(x)}{X(x)} = \frac{Y''(y)}{Y(y)} = \sigma $$
 
 \item Assuming $\sigma > 0$,  the solution $X(x)$ is:
 $$ X(x) = a\cos(\sqrt{\sigma}x) + b\sin(\sqrt{\sigma}x) $$
@@ -342,10 +342,10 @@ where
 
 $$ \nu(x,y) = \alpha_1 +\alpha_2x + \alpha_3y + \alpha_4xy $$
 
-\item Setting $u=\nu$ at the corners results in a 4x4 system. 
+\item Setting $u=\nu$ at the corners results in a 4x4 system.
 
 \item Once $\nu$ is known, write the new problem in terms of $U(x,y)$ and solve using the same method as above.
 
 \end{enumerate}
- 
+
 \end{document}
