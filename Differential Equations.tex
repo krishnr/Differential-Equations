@@ -14,7 +14,11 @@
 
 % Title
 \title{Solving Differential Equations}
-\author{Krishn Ramesh}
+\author{
+    Krishn Ramesh \\ \\
+    github.com/krishnr/Differential-Equations \\ \\
+    SYDE 311
+}
 \maketitle
 
 
@@ -79,8 +83,8 @@ The goal is to find $\lambda$ and $a_n$.
 \item The derivatives of $y(t)$ are:
 
 \begin{gather*}
-y'(t)= \sum \limits_{n=1}^{\infty} a_n (n+\lambda) (t-t_0)^{n+\lambda-1} \\
-y''(t)= \sum \limits_{n=2}^{\infty} a_n (n+\lambda) (n+\lambda-1)(t-t_0)^{n+\lambda-2}
+y'(t)= \sum \limits_{n=0}^{\infty} a_n (n+\lambda) (t-t_0)^{n+\lambda-1} \\
+y''(t)= \sum \limits_{n=0}^{\infty} a_n (n+\lambda) (n+\lambda-1)(t-t_0)^{n+\lambda-2}
 \end{gather*}
 
 \item Index shift the derivatives so that the exponents are the same.
@@ -165,7 +169,7 @@ $$ T(t) = Ce^{\kappa \sigma t}$$
 $$ X(x) = A\cos(\sqrt{-\sigma}x) + B\sin(\sqrt{-\sigma}x) $$
 
 \item Plug the BCs into $X(x)$ to find $\sigma$:
-$$ \sigma = -(\frac{n\pi}{l})^2 $$
+$$ \sigma = - \left( \frac{n\pi}{l} \right)^2 $$
 \item Substitute $X_n(x)$ and $T_n(t)$ back into $u(x,t)$ to obtain:
 
 $$ u(x,t) = \sum \limits_{n=0}^{\infty} u_n(x,t) = \sum \limits_{n=0}^{\infty} B_n \sin(\frac{n\pi}{l}x)e^{-(\frac{n\pi}{l})^2\kappa t}$$
@@ -174,7 +178,7 @@ For frozen ends, you end up with just $\sin$. For insulated ends, you end up wit
 \item To find $B_n$, sub in the IC $u(x,0)=f(x)$ to find that it resembles the Fourier series, and so:
 $$ B_n = \frac{1}{l} \int_{-l}^{l} f(x) \sin(\frac{n\pi}{l}x) dx$$
 
-\item If the integral is straightforward, solve it, otherwise get it into one of the following forms through trig identities:
+\item If the integral is straightforward, solve it, otherwise get it into one of the following orthogonality relations through trig identities:
 
 \begin{align*}
 	\frac{1}{l} \int_{-l}^{l} cos(\frac{n\pi}{l}x)cos(\frac{m\pi}{l}x) &=
