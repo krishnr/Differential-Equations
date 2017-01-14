@@ -288,10 +288,13 @@ $$ u(x,t) = \sum \limits_{n=0}^{\infty} \left( a_n\cos(\frac{n\pi}{l}ct) + b_n\s
 \item Plug in the ICs to get $a_n, b_n$.
 
 \begin{gather*}
-a_n = \frac{1}{l} \int_{-l}^{l} f(x) \sin(\frac{n\pi}{l}x) dx \\
+a_n = \frac{1}{l} \int_{-l}^{l} f(x) \cos(\frac{n\pi}{l}x) dx \\
 b_n = \frac{1}{n\pi c} \int_{-l}^{l} g(x) \sin(\frac{n\pi}{l}x) dx
 \end{gather*}
-
+Take the odd extension of $g(x)$ and integrate:
+$$
+b_n = \frac{2}{n\pi c} \int_{0}^{l} g(x) \sin(\frac{n\pi}{l}x) dx
+$$
 \end{enumerate}
 
 
